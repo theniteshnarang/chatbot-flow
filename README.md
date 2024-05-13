@@ -22,14 +22,14 @@ also includes eslint and some additional rules to help you write React code that
 is less likely to run into issues:
 
 ```bash
-npm install # or `pnpm install` or `yarn install`
+yarn install
 ```
 
 Vite is a great development server and build tool that we recommend our users to
 use. You can start a development server with:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 While the development server is running, changes you make to the code will be
