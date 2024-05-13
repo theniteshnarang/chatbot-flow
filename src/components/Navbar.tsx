@@ -33,10 +33,15 @@ export const Navbar = () => {
     const nodesLength = nodes.length;
     const edgesLength = edges.length;
 
-    if (nodesLength - 1 != edgesLength || nodesLength < 1 || edgesLength < 1) {
+    if (nodesLength < 1) {
       setMessage({
         type: "error",
-        text: "Cannot save flow, please check your connection",
+        text: "Cannot save flow, should have one node.",
+      });
+    } else if (nodesLength - 1 != edgesLength) {
+      setMessage({
+        type: "error",
+        text: "Cannot save flow, please check your connection.",
       });
     } else {
       setMessage({

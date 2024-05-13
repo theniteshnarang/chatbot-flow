@@ -3,7 +3,6 @@ import { TextNode } from "./TextNode";
 
 export enum CustomNode {
   text = "text-node",
-  hello = "hello-node",
 }
 
 export const initialNodes = [

@@ -29,6 +29,7 @@ const selector = (state: StoreState) => ({
 export const ReactFlowLayout = () => {
   const { nodes, edges, onNodesChange, onEdgesChange, onConnect, setNodes } =
     useFlowStore(useShallow(selector));
+
   const reactFlowInstance = useReactFlow();
 
   // To trigger the drop effect on the react flow.
