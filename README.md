@@ -1,5 +1,11 @@
 # Chatbot Flow Builder (Vite + TS)
 
+## Tech Stack
+- React Flow
+- MUI
+- Typescript
+- Zustand
+
 ## Getting up and running
 
 ```bash
