@@ -8,18 +8,15 @@ export type TextNodeData = {
   message?: string;
 };
 
-export function TextNode({ data, ...props }: NodeProps<TextNodeData>) {
-  // const x = `${Math.round(xPos)}px`;
-  // const y = `${Math.round(yPos)}px`;
-  console.log({ props });
-
+export function TextNode({ data, selected }: NodeProps<TextNodeData>) {
   return (
     <Box
       sx={{
         width: "12rem",
         borderRadius: 1,
-        height: "4rem",
+        minHeight: "5rem",
         boxShadow: "0 0 10px 3px rgba(0, 0, 0, 0.2)",
+        ...(selected && { border: "1px solid", borderColor: "primary.main" }),
       }}
     >
       <Stack
@@ -39,16 +36,10 @@ export function TextNode({ data, ...props }: NodeProps<TextNodeData>) {
         </Typography>
         <WhatsAppIcon fontSize="small" htmlColor="green.400" />
       </Stack>
-      <Typography pl={1} pt={1} variant="caption">
+      <Typography p={1} pr={0} variant="caption">
         {data.message}
       </Typography>
-      {/* We add this class to use the same styles as React Flow's default nodes. */}
-      {/* <div className="react-flow__node-default"> */}
-
-      {/* {data.label && <div>{data.label}</div>} */}
       <Handle type="target" position={Position.Left} />
-      <Handle type="target" position={Position.Bottom} />
-      <Handle type="target" position={Position.Top} />
       <Handle type="source" position={Position.Right} />
     </Box>
   );

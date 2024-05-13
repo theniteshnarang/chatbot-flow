@@ -12,13 +12,15 @@ import {
   applyNodeChanges,
   applyEdgeChanges,
 } from "reactflow";
-import { initialEdges } from "../../edges";
-import { initialNodes } from "../../nodes";
+import { initialEdges } from "../edges";
+import { initialNodes } from "../nodes";
+import { LocalStorageKeys, getDataInLocalStorage } from "../util/localStorage";
 
-// import initialNodes from './nodes';
-// import initialEdges from './edges';
+export type OptionsState = {
+  isSelectable?: boolean;
+};
 
-type RFState = {
+export type RFState = {
   nodes: Node[];
   edges: Edge[];
   onNodesChange: OnNodesChange;
@@ -26,12 +28,17 @@ type RFState = {
   onConnect: OnConnect;
   setNodes: (nodes: Node[]) => void;
   setEdges: (edges: Edge[]) => void;
+  setOptions: (options: OptionsState) => void;
 };
 
-// this is our useStore hook that we can use in our components to get parts of the store and call actions
-const useStore = create<RFState>((set, get) => ({
-  nodes: initialNodes,
-  edges: initialEdges,
+export type StoreState = RFState & OptionsState;
+
+const storedData = getDataInLocalStorage(LocalStorageKeys.nodesEdges);
+
+// this is our useFlowStore hook that we can use in our components to get parts of the store and call actions
+export const useFlowStore = create<StoreState>((set, get) => ({
+  nodes: storedData?.nodes || initialNodes,
+  edges: storedData?.edges || initialEdges,
   onNodesChange: (changes: NodeChange[]) => {
     set({
       nodes: applyNodeChanges(changes, get().nodes),
@@ -53,6 +60,7 @@ const useStore = create<RFState>((set, get) => ({
   setEdges: (edges: Edge[]) => {
     set({ edges });
   },
+  setOptions: (options: OptionsState) => {
+    set({ ...options });
+  },
 }));
-
-export default useStore;
